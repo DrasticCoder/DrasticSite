@@ -1,0 +1,94 @@
+.drastic-landing {
+  background: #fefefe;
+  font-family: 'Courier New', monospace;
+  color: #111;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 5px solid black;
+  box-shadow: 8px 8px 0 black;
+}
+
+.drastic-landing h1 {
+  font-size: 3rem;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  background: yellow;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border: 3px solid black;
+  box-shadow: 4px 4px 0 black;
+}
+
+.drastic-landing .tagline {
+  font-size: 1.2rem;
+  color: #444;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.section {
+  border-top: 3px dashed black;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  background: hotpink;
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border: 2px solid black;
+  box-shadow: 2px 2px 0 black;
+}
+
+.section p,
+.section ul {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.section ul {
+  padding-left: 1.5rem;
+}
+
+.section li {
+  margin: 0.5rem 0;
+}
+
+code {
+  background: #eee;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.get-started-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.get-started-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: #00d084;
+  color: #fff;
+  text-decoration: none;
+  border: 3px solid black;
+  box-shadow: 4px 4px 0 black;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.get-started-btn:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 black;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 2px solid black;
+  font-size: 0.9rem;
+  color: #555;
+}
