@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import './form.css';
 import Link from 'next/link';
 
@@ -7,9 +8,15 @@ export default function FormPage() {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
   const [popupVisible, setPopupVisible] = useState(false);
+  const [siteLink, setSiteLink] = useState('');
 
-  const baseUrl = `${window.location.protocol}//${window.location.host}`;
-  const siteLink = `${baseUrl}/${name}`;
+  useEffect(() => {
+    if (name) {
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+      setSiteLink(`${baseUrl}/${name}`);
+    }
+  }, [name]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await fetch('/api/save', {
@@ -17,13 +24,16 @@ export default function FormPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, code }),
     });
+
     if (res.ok) {
-      window.location.href = `/${name}`;
-      await navigator.clipboard.writeText(siteLink);
+      await navigator.clipboard.writeText(`${siteLink}`);
       setPopupVisible(true);
+
       setTimeout(() => {
         setPopupVisible(false);
       }, 3000);
+
+      window.location.href = `/${name}`;
     }
   };
 

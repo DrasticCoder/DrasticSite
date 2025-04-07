@@ -10,7 +10,7 @@ export default function NotFound() {
         background: '#fafafa',
       }}
     >
-      <Image src="/404.svg" alt="Not Found" />
+      <Image src="/404.svg" alt="Not Found" width={100} height={100} />
       <h1>404 - Page Not Found</h1>
       <p>
         Oops, looks like you’ve wandered off the grid. <br />

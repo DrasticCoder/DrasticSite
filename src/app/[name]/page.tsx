@@ -1,25 +1,22 @@
 import { MongoClient } from 'mongodb';
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-interface PageProps {
-  params: { name: string };
+interface PageParams {
+  name: string;
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  return {
-    title: `${params.name} | DrasticSite`,
-  };
+interface PageProps {
+  params: Promise<PageParams>;
 }
 
 export default async function Page({ params }: PageProps) {
+  const { name } = await params;
+
   const client = new MongoClient(process.env.MONGO_URI!);
   await client.connect();
   const db = client.db('htmlpublisher');
 
-  const page = await db.collection('pages').findOne({ name: params.name });
+  const page = await db.collection('pages').findOne({ name });
 
   if (!page) notFound();
 
