@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './landing.css';
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
         <h2>🚀 What is this?</h2>
         <p>
           DrasticSite is a free single-page HTML hoster. No login. No ads. No
-          soul. Paste code. Get a URL. That's it.
+          soul. Paste code. Get a URL. That&apos;s it.
         </p>
       </div>
 
@@ -31,7 +32,7 @@ export default function Home() {
         <h2>🧪 Future BS</h2>
         <ul>
           <li>⏳ Page expiration – we all fade eventually</li>
-          <li>🧼 Delete your stuff – or don't, I don't care</li>
+          <li>🧼 Delete your stuff – or don&apos;t, I don&apos;t care</li>
           <li>🧩 Sandboxed HTML – your scripts stay in their little jail</li>
           <li>🔐 Protected pages – secrets? shady stuff? we got you (maybe)</li>
         </ul>
@@ -46,22 +47,22 @@ export default function Home() {
               : 'in.drasticcoder.in/<your-page>'}
           </code>
           <br />
-          You’re welcome.
+          You&apos;re welcome.
         </p>
       </div>
 
       <div className="get-started-container">
-        <a href="/form" className="get-started-btn">
+        <Link href="/form" className="get-started-btn">
           Get Started
-        </a>
+        </Link>
       </div>
 
       <footer>
         <p>
           Made by{' '}
-          <a href="https://drasticcoder.in" target="_blank">
+          <Link href="https://drasticcoder.in" target="_blank">
             drasticcoder
-          </a>{' '}
+          </Link>{' '}
           😎
         </p>
       </footer>

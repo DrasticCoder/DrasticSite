@@ -26,9 +26,10 @@ export async function POST(req: Request) {
       .updateOne({ name }, { $set: { name, code } }, { upsert: true });
 
     return NextResponse.json({ message: 'Saved!' });
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     return NextResponse.json(
-      { message: 'DB error', error: err.message },
+      { message: 'DB error', error: errorMessage },
       { status: 500 },
     );
   }
