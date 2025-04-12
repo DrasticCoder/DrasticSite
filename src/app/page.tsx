@@ -6,8 +6,8 @@ export default function Home() {
     <main className="drastic-landing">
       <h1>🧱 DrasticSite</h1>
       <p className="tagline">
-        A *very serious* place to throw your random HTML and watch it live...
-        instantly.
+        A <span className="highlight">*very serious*</span> place to throw your
+        random HTML and watch it live... instantly.
       </p>
 
       <div className="section">
@@ -44,7 +44,7 @@ export default function Home() {
           <code>
             {typeof window !== 'undefined'
               ? `${window.location.hostname}/<your-page>`
-              : 'in.drasticcoder.in/<your-page>'}
+              : 'site.drasticcoder.in/<your-page>'}
           </code>
           <br />
           You&apos;re welcome.
@@ -53,7 +53,7 @@ export default function Home() {
 
       <div className="get-started-container">
         <Link href="/form" className="get-started-btn">
-          Get Started
+          ⚡ Launch Now
         </Link>
       </div>
 

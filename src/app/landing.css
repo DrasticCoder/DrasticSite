@@ -1,94 +1,115 @@
+/* Overall layout */
 .drastic-landing {
   background: #fefefe;
-  font-family: 'Courier New', monospace;
+  font-family: 'Helvetica Neue', sans-serif;
   color: #111;
+  max-width: 900px;
+  margin: 3rem auto;
   padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  border: 5px solid black;
-  box-shadow: 8px 8px 0 black;
+  border: 5px solid #000;
+  box-shadow: 10px 10px 0 #000;
+  line-height: 1.6;
 }
 
+/* Header styling */
 .drastic-landing h1 {
-  font-size: 3rem;
-  margin-bottom: 0.2rem;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
   text-transform: uppercase;
-  background: yellow;
+  background: #ffd700;
   display: inline-block;
-  padding: 0.3rem 1rem;
-  border: 3px solid black;
-  box-shadow: 4px 4px 0 black;
+  padding: 0.75rem 1.5rem;
+  border: 4px solid #000;
+  box-shadow: 5px 5px 0 #000;
 }
 
-.drastic-landing .tagline {
-  font-size: 1.2rem;
-  color: #444;
+/* Tagline highlight */
+.tagline {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
   font-style: italic;
-  margin-bottom: 2rem;
+  color: #333;
 }
 
+.highlight {
+  background: #ffde7d;
+  padding: 0.1rem 0.4rem;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Section styling */
 .section {
-  border-top: 3px dashed black;
-  margin-top: 2rem;
-  padding-top: 1rem;
+  border-top: 3px dashed #000;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
 }
 
 .section h2 {
-  font-size: 1.5rem;
-  background: hotpink;
+  font-size: 1.6rem;
+  background: #ff69b4;
+  padding: 0.5rem 1rem;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
   display: inline-block;
-  padding: 0.2rem 0.8rem;
-  border: 2px solid black;
-  box-shadow: 2px 2px 0 black;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
 }
 
 .section p,
 .section ul {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #222;
 }
 
 .section ul {
   padding-left: 1.5rem;
+  list-style: disc;
 }
 
 .section li {
   margin: 0.5rem 0;
 }
 
+/* Inline code snippet */
 code {
-  background: #eee;
-  padding: 2px 6px;
+  background: #f0f0f0;
+  padding: 0.2rem 0.5rem;
   border: 1px solid #ccc;
-  font-size: 0.9rem;
+  font-family: monospace;
+  font-size: 0.95rem;
 }
 
+/* Get Started button section */
 .get-started-container {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .get-started-btn {
   display: inline-block;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  background: #00d084;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.3rem;
+  background: #00a86b;
   color: #fff;
   text-decoration: none;
-  border: 3px solid black;
-  box-shadow: 4px 4px 0 black;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .get-started-btn:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 black;
+  box-shadow: 10px 10px 0 #000;
 }
 
+/* Footer styling */
 footer {
   margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 2px solid black;
+  padding-top: 1.5rem;
+  border-top: 2px solid #000;
   font-size: 0.9rem;
   color: #555;
+  text-align: center;
 }

@@ -1,22 +1,17 @@
+import { headers } from 'next/headers';
 import { MongoClient } from 'mongodb';
 import { notFound } from 'next/navigation';
 
-interface PageParams {
-  name: string;
-}
-
-interface PageProps {
-  params: Promise<PageParams>;
-}
-
-export default async function Page({ params }: PageProps) {
-  const { name } = await params;
+export default async function SubdomainPage() {
+  const headersList = await headers();
+  const site =
+    headersList.get('x-site') || headersList.get('host')?.split('.')[0];
 
   const client = new MongoClient(process.env.MONGO_URI!);
   await client.connect();
   const db = client.db('htmlpublisher');
 
-  const page = await db.collection('pages').findOne({ name });
+  const page = await db.collection('pages').findOne({ name: site });
 
   if (!page) notFound();
 
