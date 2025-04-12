@@ -6,54 +6,57 @@ export default function Home() {
     <main className="drastic-landing">
       <h1>🧱 DrasticSite</h1>
       <p className="tagline">
-        A <span className="highlight">*very serious*</span> place to throw your
-        random HTML and watch it live... instantly.
+        A <span className="highlight">very serious</span> place to throw your
+        random HTML and watch it live… instantly.
       </p>
 
       <div className="section">
-        <h2>🚀 What is this?</h2>
+        <h2>What is this?</h2>
         <p>
-          DrasticSite is a free single-page HTML hoster. No login. No ads. No
-          soul. Paste code. Get a URL. That&apos;s it.
+          DrasticSite is a free single-page HTML hoster. No login, no ads – just
+          paste your code and get a URL.
         </p>
       </div>
 
       <div className="section">
-        <h2>🛠️ Currently Cooking...</h2>
+        <h2>Currently Cooking</h2>
         <ul>
-          <li>🧵 CLI tool – because real devs use terminals</li>
+          <li>CLI tool – for those who love the command line</li>
           <li>
-            📁 File uploads – for your beautiful <code>.html</code> masterpieces
+            File uploads – easily share your <code>.html</code> masterpieces
           </li>
         </ul>
       </div>
 
       <div className="section">
-        <h2>🧪 Future BS</h2>
+        <h2>Future Enhancements</h2>
         <ul>
-          <li>⏳ Page expiration – we all fade eventually</li>
-          <li>🧼 Delete your stuff – or don&apos;t, I don&apos;t care</li>
-          <li>🧩 Sandboxed HTML – your scripts stay in their little jail</li>
-          <li>🔐 Protected pages – secrets? shady stuff? we got you (maybe)</li>
+          <li>Page expiration for temporary content</li>
+          <li>Option to delete your content</li>
+          <li>Sandboxed HTML for enhanced security</li>
+          <li>Protected pages for private sharing</li>
         </ul>
       </div>
 
       <div className="section">
-        <h2>🔗 Your Site?</h2>
+        <h2>Your Site</h2>
         <p>
           <code>
             {typeof window !== 'undefined'
-              ? `${window.location.hostname}/<your-page>`
-              : 'site.drasticcoder.in/<your-page>'}
+              ? `<your-page>.${window.location.hostname}/`
+              : '<your-page>.site.drasticcoder.in/'}
           </code>
           <br />
-          You&apos;re welcome.
+          It’s that simple.
         </p>
       </div>
 
       <div className="get-started-container">
         <Link href="/form" className="get-started-btn">
           ⚡ Launch Now
+        </Link>
+        <Link href="/editor" className="online-editor-btn">
+          ✏️ Open Online Editor
         </Link>
       </div>
 
