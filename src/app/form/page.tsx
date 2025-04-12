@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Editor from '@monaco-editor/react';
 import './form.css';
 
 export default function FormPage() {
@@ -72,14 +73,23 @@ export default function FormPage() {
         </label>
 
         <label>
-          Or paste HTML code below:
-          <textarea
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            placeholder="<html>...</html>"
-            required
-            rows={10}
-          />
+          Or edit HTML code below:
+          <div style={{ height: '400px', border: '1px solid #ccc' }}>
+            <Editor
+              height="100%"
+              language="html"
+              value={code}
+              onChange={(value) => setCode(value || '')}
+              theme="vs-dark"
+              options={{
+                fontSize: 14,
+                minimap: {
+                  enabled: false,
+                },
+                automaticLayout: true,
+              }}
+            />
+          </div>
         </label>
 
         <button type="submit">Submit</button>
