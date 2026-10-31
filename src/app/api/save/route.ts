@@ -1,35 +1,41 @@
-import { Db, MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
-
-const uri = process.env.MONGO_URI!;
-const client = new MongoClient(uri);
-let conn: Db;
+import { saveSitePage } from '@/lib/storage';
 
 export async function POST(req: Request) {
-  const { name, code } = await req.json();
-
-  if (!name || !code) {
-    return NextResponse.json(
-      { message: 'Missing name or code' },
-      { status: 400 },
-    );
-  }
-
   try {
-    if (!conn) {
-      await client.connect();
-      conn = client.db('htmlpublisher');
+    const { name, code } = await req.json();
+
+    if (!name || !code) {
+      return NextResponse.json(
+        { message: 'Missing name or code' },
+        { status: 400 },
+      );
     }
 
-    await conn
-      .collection('pages')
-      .updateOne({ name }, { $set: { name, code } }, { upsert: true });
+    const cleanSlug = name
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
 
-    return NextResponse.json({ message: 'Saved!' });
+    if (!cleanSlug) {
+      return NextResponse.json(
+        { message: 'Invalid site name' },
+        { status: 400 }
+      );
+    }
+
+    await saveSitePage(cleanSlug, code);
+
+    return NextResponse.json({
+      message: 'Saved!',
+      slug: cleanSlug,
+    });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     return NextResponse.json(
-      { message: 'DB error', error: errorMessage },
+      { message: 'Failed to save page', error: errorMessage },
       { status: 500 },
     );
   }

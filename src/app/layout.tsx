@@ -1,20 +1,10 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import { CodeProvider } from '@/context/CodeContext';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
 export const metadata: Metadata = {
-  title: 'DrasticSite',
-  description: 'A single-page HTML site hoster free for all',
+  title: 'DrasticSite | AI HTML Website Builder & Host',
+  description:
+    'Build websites with Gemini AI and publish them instantly with one click.',
 };
 
 export default function RootLayout({
@@ -24,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <CodeProvider>{children}</CodeProvider>
       </body>
     </html>

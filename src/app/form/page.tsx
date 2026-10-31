@@ -49,6 +49,11 @@ export default function FormPage() {
 
   return (
     <div className="form-container">
+      <div style={{ marginBottom: '16px' }}>
+        <Link href="/" style={{ textDecoration: 'none', fontWeight: 800, color: '#000' }}>
+          ← Back to DrasticSite AI Studio
+        </Link>
+      </div>
       <h1>Publish Your HTML</h1>
       <form onSubmit={handleSubmit}>
         <label>

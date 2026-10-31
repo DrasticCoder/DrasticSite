@@ -1,74 +1,101 @@
-import Link from 'next/link';
-import './landing.css';
+'use client';
 
-export default function Home() {
+import { useState } from 'react';
+import StudioHeader, {
+  ViewMode,
+  DeviceMode,
+} from '@/components/StudioHeader';
+import LiveEditor from '@/components/LiveEditor';
+import AiModal from '@/components/AiModal';
+import PublishModal from '@/components/PublishModal';
+import HelpModal from '@/components/HelpModal';
+import OnboardingTour from '@/components/OnboardingTour';
+import './studio.css';
+
+export default function HomePage() {
+  // Directly open the AI modal on initial load as requested
+  const [isAiModalOpen, setIsAiModalOpen] = useState(true);
+  const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isTourActive, setIsTourActive] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('split');
+  const [deviceMode, setDeviceMode] = useState<DeviceMode>('desktop');
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 4000);
+  };
+
+  const handleAiSuccess = (slug: string) => {
+    showToast(`⚡ Generated site for "${slug}"! Tweak code or hit Publish.`);
+  };
+
+  const handleStartTour = () => {
+    setIsAiModalOpen(false);
+    setIsPublishModalOpen(false);
+    setIsHelpModalOpen(false);
+    setIsTourActive(true);
+  };
+
   return (
-    <main className="drastic-landing">
-      <h1>🧱 DrasticSite</h1>
-      <p className="tagline">
-        A <span className="highlight">very serious</span> place to throw your
-        random HTML and watch it live… instantly.
-      </p>
+    <div className="neo-studio-container">
+      {/* Neo-brutalist Header Bar */}
+      <StudioHeader
+        viewMode={viewMode}
+        setViewMode={setViewMode}
+        deviceMode={deviceMode}
+        setDeviceMode={setDeviceMode}
+        onOpenAiModal={() => setIsAiModalOpen(true)}
+        onOpenPublishModal={() => setIsPublishModalOpen(true)}
+        onOpenHelpModal={() => setIsHelpModalOpen(true)}
+      />
 
-      <div className="section">
-        <h2>What is this?</h2>
-        <p>
-          DrasticSite is a free single-page HTML hoster. No login, no ads – just
-          paste your code and get a URL.
-        </p>
-      </div>
+      {/* Main Workspace with Resizable Splitter */}
+      <LiveEditor
+        viewMode={viewMode}
+        deviceMode={deviceMode}
+        onOpenAiModal={() => setIsAiModalOpen(true)}
+      />
 
-      <div className="section">
-        <h2>Currently Cooking</h2>
-        <ul>
-          <li>CLI tool – for those who love the command line</li>
-          <li>
-            File uploads – easily share your <code>.html</code> masterpieces
-          </li>
-        </ul>
-      </div>
+      {/* AI Generation Modal (Active by default on page load) */}
+      <AiModal
+        isOpen={isAiModalOpen}
+        onClose={() => setIsAiModalOpen(false)}
+        onGenerateSuccess={handleAiSuccess}
+      />
 
-      <div className="section">
-        <h2>Future Enhancements</h2>
-        <ul>
-          <li>Page expiration for temporary content</li>
-          <li>Option to delete your content</li>
-          <li>Sandboxed HTML for enhanced security</li>
-          <li>Protected pages for private sharing</li>
-        </ul>
-      </div>
+      {/* Publish & Link Copy Modal */}
+      <PublishModal
+        isOpen={isPublishModalOpen}
+        onClose={() => setIsPublishModalOpen(false)}
+      />
 
-      <div className="section">
-        <h2>Your Site</h2>
-        <p>
-          <code>
-            {typeof window !== 'undefined'
-              ? `<your-page>.${window.location.hostname}/`
-              : '<your-page>.site.drasticcoder.in/'}
-          </code>
-          <br />
-          It’s that simple.
-        </p>
-      </div>
+      {/* Help & Quick Steps Modal ('?' button) */}
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+        onStartTour={handleStartTour}
+      />
 
-      <div className="get-started-container">
-        <Link href="/form" className="get-started-btn">
-          ⚡ Launch Now
-        </Link>
-        <Link href="/editor" className="online-editor-btn">
-          ✏️ Open Online Editor
-        </Link>
-      </div>
+      {/* Interactive Guided Onboarding Tour */}
+      <OnboardingTour
+        isActive={isTourActive}
+        onClose={() => {
+          setIsTourActive(false);
+          showToast('Tour completed! You are ready to build.');
+        }}
+      />
 
-      <footer>
-        <p>
-          Made by{' '}
-          <Link href="https://drasticcoder.in" target="_blank">
-            drasticcoder
-          </Link>{' '}
-          😎
-        </p>
-      </footer>
-    </main>
+      {/* Toast Alert */}
+      {toastMessage && (
+        <div className="neo-toast-banner" role="status">
+          <span>🎉</span>
+          <span>{toastMessage}</span>
+        </div>
+      )}
+    </div>
   );
 }
